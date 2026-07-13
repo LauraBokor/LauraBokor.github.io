@@ -1,0 +1,224 @@
+<title>Legrand gyárlátogatás — B verzió: Regisztráció-fókusz</title>
+<style>
+  :root{
+    --paper:#F1EEE6; --paper-raised:#FFFFFF; --ink:#12181A; --ink-soft:#4B5457;
+    --panel:#12181A; --panel-text:#EDEAE1; --panel-text-soft:#9AA3A0;
+    --green:#1F7A46; --green-brt:#33AE68;
+    --hazard:#E7AC1E;
+    --line:rgba(18,24,26,.15); --line-strong:rgba(18,24,26,.3);
+    --panel-line:rgba(237,234,225,.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#0E1315; --paper-raised:#161D1F; --ink:#EDEAE1; --ink-soft:#9AA3A0;
+      --panel:#080B0C; --panel-text:#EDEAE1; --panel-text-soft:#8A938F;
+      --line:rgba(237,234,225,.14); --line-strong:rgba(237,234,225,.28);
+      --panel-line:rgba(237,234,225,.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1315; --paper-raised:#161D1F; --ink:#EDEAE1; --ink-soft:#9AA3A0;
+    --panel:#080B0C; --panel-text:#EDEAE1; --panel-text-soft:#8A938F;
+    --line:rgba(237,234,225,.14); --line-strong:rgba(237,234,225,.28);
+    --panel-line:rgba(237,234,225,.14);
+  }
+  :root[data-theme="light"]{
+    --paper:#F1EEE6; --paper-raised:#FFFFFF; --ink:#12181A; --ink-soft:#4B5457;
+    --panel:#12181A; --panel-text:#EDEAE1; --panel-text-soft:#9AA3A0;
+    --line:rgba(18,24,26,.15); --line-strong:rgba(18,24,26,.3);
+    --panel-line:rgba(237,234,225,.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:ui-sans-serif,system-ui,"Segoe UI",Arial,sans-serif; line-height:1.55;}
+  h1,h2,h3{font-family:ui-sans-serif,"Arial Narrow",system-ui,sans-serif; font-stretch:condensed; font-weight:800; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0;}
+  .mono{font-family:ui-monospace,"SF Mono","Cascadia Code",monospace;}
+  a{color:var(--green-brt);}
+  ::selection{background:var(--green); color:#fff;}
+
+  .shell{display:grid; grid-template-columns:1fr 400px; min-height:100vh; align-items:start;}
+  @media (max-width:920px){ .shell{grid-template-columns:1fr;} }
+
+  .main{padding:0 0 40px;}
+  .maininner{max-width:640px; margin:0 auto; padding:0 28px;}
+
+  .topbar{padding:18px 28px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;}
+  .topbar .brand{font-weight:800; letter-spacing:.02em; font-size:.92rem;}
+  .topbar .tag{font-family:ui-monospace,monospace; font-size:.72rem; color:var(--ink-soft);}
+
+  .hero{padding:44px 0 8px;}
+  .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .eyebrow .bar{width:30px; height:3px; background:var(--hazard);}
+  .eyebrow span.mono{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+  h1.title{font-size:clamp(1.9rem,4.6vw,2.9rem); line-height:1.05;}
+  .sub{margin-top:14px; max-width:52ch; color:var(--ink-soft); font-size:1.06rem;}
+
+  .thumbstrip{display:flex; gap:10px; overflow-x:auto; margin-top:26px; padding-bottom:6px;}
+  .thumb{
+    flex:0 0 auto; width:170px; aspect-ratio:4/3; border:1px dashed var(--line-strong);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:10px;
+    font-family:ui-monospace,monospace; font-size:.68rem; color:var(--ink-soft); letter-spacing:.04em;
+    background:repeating-linear-gradient(45deg, transparent, transparent 8px, var(--line) 8px, var(--line) 9px);
+  }
+
+  .block{padding:36px 0; border-top:1px solid var(--line);}
+  .block h2{font-size:1.25rem; margin-bottom:16px;}
+  .lede{color:var(--ink-soft); max-width:58ch;}
+
+  /* vertical timeline */
+  .timeline{position:relative; margin-top:22px; padding-left:26px;}
+  .timeline::before{content:"";position:absolute; left:5px; top:4px; bottom:4px; width:2px; background:var(--green);}
+  .tl-item{position:relative; padding-bottom:22px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:"";position:absolute; left:-26px; top:2px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--green);}
+  .tl-item .time{font-family:ui-monospace,monospace; font-weight:700; font-size:.85rem; color:var(--green-brt); font-variant-numeric:tabular-nums;}
+  .tl-item .what{margin-top:2px;}
+
+  .infolist{margin-top:18px; display:flex; flex-direction:column; gap:14px;}
+  .infolist .item{display:flex; gap:12px; align-items:flex-start;}
+  .infolist .k{font-family:ui-monospace,monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); width:110px; flex:none; padding-top:2px;}
+  .infolist .v{flex:1;}
+
+  .map{margin-top:18px; height:200px; border:1px dashed var(--line-strong); display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-family:ui-monospace,monospace; font-size:.72rem;
+    background:repeating-linear-gradient(0deg, transparent, transparent 20px, var(--line) 20px, var(--line) 21px),
+               repeating-linear-gradient(90deg, transparent, transparent 20px, var(--line) 20px, var(--line) 21px);}
+
+  .annot{margin-top:30px; padding:14px 16px; border:1px dashed var(--line-strong); font-family:ui-monospace,monospace; font-size:.76rem; color:var(--ink-soft);}
+
+  /* sticky sidebar / registration panel */
+  .side{
+    position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto;
+    background:var(--panel); color:var(--panel-text); padding:26px 26px 40px;
+    border-left:1px solid var(--panel-line);
+  }
+  @media (max-width:920px){ .side{position:static; height:auto;} }
+  .side .kicker{font-family:ui-monospace,monospace; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--panel-text-soft); margin-bottom:10px;}
+  .side h2{color:var(--panel-text); font-size:1.15rem; margin-bottom:4px;}
+  .side .sub2{color:var(--panel-text-soft); font-size:.86rem; margin-bottom:20px;}
+
+  .toggle{display:flex; border:1px solid var(--panel-line); border-radius:3px; overflow:hidden; margin-bottom:20px;}
+  .toggle label{flex:1; text-align:center; padding:12px 8px; cursor:pointer; font-family:ui-monospace,monospace; font-size:.82rem;}
+  .toggle input{display:none;}
+  .toggle label span.d{display:block; font-weight:700;}
+  .toggle label span.cap{display:block; font-size:.68rem; color:var(--panel-text-soft); margin-top:2px;}
+  .toggle input:checked + span{ }
+  .toggle label:has(input:checked){background:var(--green); color:#fff;}
+  .toggle label:has(input:checked) span.cap{color:rgba(255,255,255,.8);}
+  .toggle label:first-child{border-right:1px solid var(--panel-line);}
+
+  .field{display:flex; flex-direction:column; gap:6px; margin-bottom:14px;}
+  .field label{font-family:ui-monospace,monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--panel-text-soft);}
+  .field input{
+    border:1px solid var(--panel-line); background:rgba(255,255,255,.04); color:var(--panel-text);
+    padding:11px 12px; font-size:.94rem; font-family:inherit; border-radius:2px;
+  }
+  .field input::placeholder{color:var(--panel-text-soft);}
+  .field input:focus{outline:2px solid var(--green-brt); outline-offset:1px;}
+
+  .consent{margin:16px 0 4px; display:flex; flex-direction:column; gap:10px;}
+  .chk{display:flex; gap:9px; align-items:flex-start; font-size:.8rem; color:var(--panel-text-soft);}
+  .chk input{margin-top:3px; accent-color:var(--green-brt);}
+  .chk a{color:var(--panel-text);}
+
+  .cta{
+    width:100%; border:none; background:var(--green); color:#fff; font-weight:800; letter-spacing:.03em;
+    text-transform:uppercase; font-size:.95rem; padding:15px; cursor:pointer; border-radius:2px; margin-top:6px;
+  }
+  .cta:hover{background:var(--green-brt);}
+  .cta:focus-visible{outline:3px solid var(--hazard); outline-offset:2px;}
+  .capnote{margin-top:12px; font-size:.76rem; color:var(--panel-text-soft); text-align:center;}
+
+  /* mobile sticky CTA bar */
+  .mobilebar{display:none;}
+  @media (max-width:920px){
+    .mobilebar{
+      display:flex; position:sticky; bottom:0; z-index:5; background:var(--panel); color:#fff;
+      padding:14px 20px; align-items:center; justify-content:space-between; gap:12px;
+      border-top:1px solid var(--panel-line);
+    }
+    .mobilebar .cta{width:auto; margin:0; padding:12px 20px;}
+  }
+</style>
+
+<div class="shell">
+  <div class="main">
+    <div class="topbar">
+      <div class="brand">LEGRAND · PARTNER KLUB</div>
+      <div class="tag mono">VERZIÓ B — REGISZTRÁCIÓ-FÓKUSZ</div>
+    </div>
+
+    <div class="maininner">
+      <div class="hero">
+        <div class="eyebrow"><span class="bar"></span><span class="mono">Gyárlátogatás · Szentes</span></div>
+        <h1 class="title">Hazai gyártás,<br>testközelből</h1>
+        <p class="sub">Gyárlátogatás és új termékbemutató a Legrand szentesi gyárában — Partner Klub tagjainknak.</p>
+
+        <div class="thumbstrip">
+          <div class="thumb">KÉP<br>Gyártócsarnok</div>
+          <div class="thumb">KÉP<br>Festőüzem</div>
+          <div class="thumb">KÉP<br>Minőségbiztosítás</div>
+          <div class="thumb">KÉP<br>Külső homlokzat</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Miért érdemes eljönni</h2>
+        <p class="lede">Megnézheti a modern gyárunk mellett az új festőüzemet és az innovatív minőségbiztosítási laborunkat is, emellett újdonságainkkal is megismerkedhet egy termékbemutató keretében. A programot egy finom ebéddel zárjuk.</p>
+      </div>
+
+      <div class="block">
+        <h2>Napirend</h2>
+        <div class="timeline">
+          <div class="tl-item"><div class="time">09:30–10:00</div><div class="what">Érkezés, regisztráció</div></div>
+          <div class="tl-item"><div class="time">10:00–11:00</div><div class="what">Termékbemutató — újdonságok, aktualitások, szoftverek</div></div>
+          <div class="tl-item"><div class="time">11:00–12:00</div><div class="what">Gyárlátogatás</div></div>
+          <div class="tl-item"><div class="time">12:00–13:00</div><div class="what">Ebéd, kötetlen beszélgetés</div></div>
+          <div class="tl-item"><div class="time">13:00</div><div class="what">Program vége</div></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Tudnivalók</h2>
+        <div class="infolist">
+          <div class="item"><div class="k">Részvétel</div><div class="v">Ingyenes, regisztrációhoz kötött. A létszám limitált, a helyeket a jelentkezés sorrendjében töltjük fel.</div></div>
+          <div class="item"><div class="k">Parkolás</div><div class="v">A Legrand Zrt. kinti parkolójában.</div></div>
+          <div class="item"><div class="k">Helyszín</div><div class="v">Legrand Magyarország Zrt., Szentes</div></div>
+        </div>
+        <div class="map">TÉRKÉP / BEÁGYAZOTT HELYSZÍNRAJZ</div>
+      </div>
+
+      <div class="annot">WIREFRAME MEGJEGYZÉS — B verzió: a regisztráció mindvégig látható, rögzített oldalpanelben (asztali nézet), így a döntés és a jelentkezés lépése nem igényel görgetést vissza az oldal tetejére. Mobilon a panel a tartalom alá kerül, alul rögzített „Jelentkezem” sávval.</div>
+    </div>
+  </div>
+
+  <aside class="side">
+    <div class="kicker mono">Foglaljon helyet</div>
+    <h2>Jelentkezés</h2>
+    <p class="sub2">1 fő 1 időpontra regisztrálhat.</p>
+
+    <div class="toggle">
+      <label><input type="radio" name="d" checked><span><span class="d mono">2026.09.25.</span><span class="cap">1. turnus</span></span></label>
+      <label><input type="radio" name="d"><span><span class="d mono">2026.10.02.</span><span class="cap">2. turnus</span></span></label>
+    </div>
+
+    <div class="field"><label>Név *</label><input type="text" placeholder="Teljes név"></div>
+    <div class="field"><label>Cégnév *</label><input type="text" placeholder="Cég neve"></div>
+    <div class="field"><label>Beosztás</label><input type="text" placeholder="Beosztás"></div>
+    <div class="field"><label>Telefonszám *</label><input type="tel" placeholder="+36"></div>
+    <div class="field"><label>E-mail cím *</label><input type="email" placeholder="nev@ceg.hu"></div>
+    <div class="field"><label>Cég címe</label><input type="text" placeholder="Irányítószám, város, utca"></div>
+
+    <div class="consent">
+      <label class="chk"><input type="checkbox"><span>Hozzájárulok a hang- és képanyag rögzítéséhez.</span></label>
+      <label class="chk"><input type="checkbox"><span>Elfogadom az <a href="#">Adatkezelési tájékoztatót</a>. *</span></label>
+    </div>
+
+    <button class="cta">Helyem lefoglalása</button>
+    <p class="capnote">Korlátozott létszám — beérkezés sorrendjében.</p>
+  </aside>
+</div>
+
+<div class="mobilebar">
+  <span class="mono" style="font-size:.78rem;">2026.09.25. · Szentes</span>
+  <button class="cta">Jelentkezem</button>
+</div>

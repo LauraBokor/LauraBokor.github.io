@@ -1,0 +1,291 @@
+<title>Legrand gyárlátogatás — A verzió: Műszaki adatlap</title>
+<style>
+  :root{
+    --ink:#12181A;
+    --ink-soft:#3A4245;
+    --paper:#F1EEE6;
+    --paper-raised:#FBFAF6;
+    --green:#1F7A46;
+    --green-brt:#2E9E5B;
+    --hazard:#E7AC1E;
+    --line:rgba(18,24,26,.16);
+    --line-strong:rgba(18,24,26,.32);
+    --danger-focus:#C1440E;
+    --radius:2px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#EDEAE1;
+      --ink-soft:#B7B2A5;
+      --paper:#12181A;
+      --paper-raised:#171F21;
+      --green:#3FB56C;
+      --green-brt:#4FCB80;
+      --hazard:#E7AC1E;
+      --line:rgba(237,234,225,.18);
+      --line-strong:rgba(237,234,225,.34);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDEAE1; --ink-soft:#B7B2A5; --paper:#12181A; --paper-raised:#171F21;
+    --green:#3FB56C; --green-brt:#4FCB80; --hazard:#E7AC1E;
+    --line:rgba(237,234,225,.18); --line-strong:rgba(237,234,225,.34);
+  }
+  :root[data-theme="light"]{
+    --ink:#12181A; --ink-soft:#3A4245; --paper:#F1EEE6; --paper-raised:#FBFAF6;
+    --green:#1F7A46; --green-brt:#2E9E5B; --hazard:#E7AC1E;
+    --line:rgba(18,24,26,.16); --line-strong:rgba(18,24,26,.32);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family: ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+    font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:0 24px;}
+  h1,h2,h3{
+    font-family: ui-sans-serif, "Arial Narrow", system-ui, sans-serif;
+    font-stretch: condensed;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, monospace;
+  }
+  .label{
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  a{color:var(--green-brt);}
+  ::selection{background:var(--green); color:var(--paper-raised);}
+
+  /* top identification strip */
+  .idstrip{
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  .idstrip .row{
+    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .idstrip .brand{ font-weight:800; letter-spacing:.02em; font-size:.95rem;}
+  .idstrip .doc{ color:var(--ink-soft);}
+
+  /* hero / doc header */
+  .doc-header{ padding:56px 0 28px; border-bottom:3px solid var(--ink);}
+  .eyebrow{
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow .bar{width:34px; height:3px; background:var(--hazard);}
+  h1.title{font-size:clamp(2.1rem,5vw,3.4rem); line-height:1.02;}
+  .sub{margin-top:14px; max-width:56ch; font-size:1.15rem; color:var(--ink-soft);}
+
+  /* spec grid - meta like a datasheet header */
+  .spec{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line); border-left:1px solid var(--line);
+    margin-top:34px;
+  }
+  .spec div{
+    border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:14px 16px;
+  }
+  .spec .v{font-family: ui-monospace, monospace; font-weight:700; font-size:1.02rem; margin-top:6px; font-variant-numeric:tabular-nums;}
+  @media (max-width:640px){ .spec{grid-template-columns:repeat(2,1fr);} }
+
+  section{padding:44px 0; border-bottom:1px solid var(--line);}
+  section > h2{font-size:1.5rem; margin-bottom:18px;}
+  .lede{max-width:64ch;}
+
+  /* three-up zones */
+  .zones{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px;}
+  @media (max-width:760px){ .zones{grid-template-columns:1fr;} }
+  .zone-shot{
+    aspect-ratio:4/3; border:1px dashed var(--line-strong);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:14px; background:
+      repeating-linear-gradient(45deg, transparent, transparent 9px, var(--line) 9px, var(--line) 10px);
+    color:var(--ink-soft); font-family:ui-monospace,monospace; font-size:.72rem; letter-spacing:.06em;
+  }
+  .zone h3{font-size:1.02rem; margin-top:12px;}
+  .zone p{margin:6px 0 0; color:var(--ink-soft); font-size:.94rem;}
+
+  /* program table */
+  table.program{width:100%; border-collapse:collapse; margin-top:18px;}
+  table.program td{
+    padding:13px 10px; border-bottom:1px solid var(--line); vertical-align:top;
+  }
+  table.program td.t{
+    font-family: ui-monospace, monospace; font-weight:700; white-space:nowrap; width:130px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* practical info */
+  .practical{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:18px;}
+  @media (max-width:640px){.practical{grid-template-columns:1fr;}}
+  .practical .card{border:1px solid var(--line); padding:16px;}
+  .practical .card h4{margin:0 0 8px; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-family:ui-monospace,monospace;}
+
+  /* map placeholder */
+  .map{
+    margin-top:18px; height:220px; border:1px dashed var(--line-strong);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-family:ui-monospace,monospace; font-size:.75rem; letter-spacing:.06em;
+    background:repeating-linear-gradient(0deg, transparent, transparent 21px, var(--line) 21px, var(--line) 22px),
+               repeating-linear-gradient(90deg, transparent, transparent 21px, var(--line) 21px, var(--line) 22px);
+  }
+
+  /* form */
+  .formgrid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px;}
+  @media (max-width:640px){.formgrid{grid-template-columns:1fr;}}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-family:ui-monospace,monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
+  .field input, .field select{
+    border:1px solid var(--line-strong); background:var(--paper-raised); color:var(--ink);
+    padding:11px 12px; font-size:.98rem; font-family:inherit; border-radius:var(--radius);
+  }
+  .field input:focus, .field select:focus{outline:2px solid var(--green-brt); outline-offset:1px;}
+
+  .dateopts{display:flex; gap:12px; flex-wrap:wrap;}
+  .dateopt{
+    flex:1; min-width:190px; border:1px solid var(--line-strong); padding:12px 14px;
+    display:flex; align-items:center; gap:10px; cursor:pointer; background:var(--paper-raised);
+  }
+  .dateopt input{accent-color:var(--green-brt);}
+  .dateopt .d{font-family:ui-monospace,monospace; font-weight:700; font-variant-numeric:tabular-nums;}
+  .dateopt .cap{display:block; color:var(--ink-soft); font-size:.78rem;}
+
+  .consent{margin-top:20px; display:flex; flex-direction:column; gap:10px;}
+  .chk{display:flex; gap:10px; align-items:flex-start; font-size:.92rem; color:var(--ink-soft);}
+  .chk input{margin-top:4px; accent-color:var(--green-brt);}
+
+  .cta{
+    margin-top:26px; width:100%; border:none; background:var(--green); color:#fff;
+    font-family:ui-sans-serif, system-ui, sans-serif; font-weight:800; letter-spacing:.03em;
+    text-transform:uppercase; font-size:1rem; padding:16px; cursor:pointer; border-radius:var(--radius);
+  }
+  .cta:hover{background:var(--green-brt);}
+  .cta:focus-visible{outline:3px solid var(--hazard); outline-offset:2px;}
+
+  .capacity-note{margin-top:12px; font-size:.85rem; color:var(--ink-soft); text-align:center;}
+
+  footer{padding:30px 0 60px; color:var(--ink-soft); font-size:.82rem;}
+  footer a{color:var(--ink-soft); text-decoration:underline;}
+
+  .annot{
+    margin-top:40px; padding:14px 16px; border:1px dashed var(--line-strong);
+    font-family:ui-monospace,monospace; font-size:.78rem; color:var(--ink-soft);
+  }
+</style>
+
+<div class="idstrip">
+  <div class="wrap row">
+    <div class="brand">LEGRAND · PARTNER KLUB</div>
+    <div class="doc mono">VERZIÓ A — MŰSZAKI ADATLAP</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="doc-header">
+    <div class="eyebrow"><span class="bar"></span><span class="label">Gyárlátogatás · Szentes</span></div>
+    <h1 class="title">Nézzen be hozzánk<br>Szentesre</h1>
+    <p class="sub">Hazai gyártás és fejlesztés egy helyen, testközelből — gyárlátogatás a Legrand Partner Klub tagjainak, új termékbemutatóval egybekötve.</p>
+  </div>
+
+  <div class="spec">
+    <div><div class="label">Időpontok</div><div class="v">09.25 / 10.02</div></div>
+    <div><div class="label">Helyszín</div><div class="v">Szentes</div></div>
+    <div><div class="label">Részvétel</div><div class="v">Díjmentes</div></div>
+    <div><div class="label">Létszám</div><div class="v">Korlátozott</div></div>
+  </div>
+
+  <section>
+    <h2>A program</h2>
+    <p class="lede">Sok szeretettel meghívjuk Partnereinket szentesi gyárlátogatással egybekötött új termékbemutatónkra! Most megnézheti a modern gyárunk mellett az új festőüzemet és az innovatív minőségbiztosítási laborunkat is. Emellett újdonságainkkal is megismerkedhetnek egy termékbemutató keretében. A programot egy finom ebéddel zárjuk.</p>
+
+    <div class="zones">
+      <div class="zone">
+        <div class="zone-shot">KÉP — GYÁRTÓCSARNOK<br>(pl. fröccsöntő sor)</div>
+        <h3>Gyártócsarnok</h3>
+        <p>Fröccsöntés és automatizált összeszerelő sorok élőben.</p>
+      </div>
+      <div class="zone">
+        <div class="zone-shot">KÉP — ÚJ FESTŐÜZEM</div>
+        <h3>Festőüzem</h3>
+        <p>A most átadott, korszerű festőüzem bemutatása.</p>
+      </div>
+      <div class="zone">
+        <div class="zone-shot">KÉP — MINŐSÉGBIZTOSÍTÁSI LABOR</div>
+        <h3>Minőségbiztosítás</h3>
+        <p>Az innovatív minőségbiztosítási labor működés közben.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Napirend</h2>
+    <table class="program">
+      <tr><td class="t">09:30–10:00</td><td>Érkezés, regisztráció</td></tr>
+      <tr><td class="t">10:00–11:00</td><td>Termékbemutató — újdonságok, aktualitások, szoftverek</td></tr>
+      <tr><td class="t">11:00–12:00</td><td>Gyárlátogatás</td></tr>
+      <tr><td class="t">12:00–13:00</td><td>Ebéd, kötetlen beszélgetés</td></tr>
+      <tr><td class="t">13:00</td><td>Program vége</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Tudnivalók</h2>
+    <div class="practical">
+      <div class="card">
+        <h4>Részvétel</h4>
+        <p style="margin:0">A rendezvény ingyenes, de regisztrációhoz kötött. A létszám limitált, a részvételi helyeket a jelentkezések sorrendjében töltjük fel.</p>
+      </div>
+      <div class="card">
+        <h4>Parkolás</h4>
+        <p style="margin:0">Parkolás a Legrand Zrt. kinti parkolójában biztosított.</p>
+      </div>
+    </div>
+    <div class="map">TÉRKÉP / BEÁGYAZOTT HELYSZÍNRAJZ</div>
+  </section>
+
+  <section id="jelentkezes">
+    <h2>Jelentkezés</h2>
+    <p class="lede">Egy fő egy időpontra tud regisztrálni. Kérjük, az alábbi adatok megadásával foglalja le helyét.</p>
+
+    <div class="label" style="margin-top:22px;">Időpont kiválasztása</div>
+    <div class="dateopts" style="margin-top:8px;">
+      <label class="dateopt"><input type="radio" name="datum" checked><span><span class="d">2026.09.25.</span><span class="cap">1. turnus</span></span></label>
+      <label class="dateopt"><input type="radio" name="datum"><span><span class="d">2026.10.02.</span><span class="cap">2. turnus</span></span></label>
+    </div>
+
+    <div class="formgrid">
+      <div class="field"><label>Név *</label><input type="text" placeholder="Teljes név"></div>
+      <div class="field"><label>Cégnév *</label><input type="text" placeholder="Cég neve"></div>
+      <div class="field"><label>Beosztás</label><input type="text" placeholder="Beosztás"></div>
+      <div class="field"><label>Telefonszám *</label><input type="tel" placeholder="+36"></div>
+      <div class="field"><label>E-mail cím *</label><input type="email" placeholder="nev@ceg.hu"></div>
+      <div class="field"><label>Cég címe</label><input type="text" placeholder="Irányítószám, város, utca"></div>
+    </div>
+
+    <div class="consent">
+      <label class="chk"><input type="checkbox"><span>Részvételemmel hozzájárulok a hang- és képanyag rögzítéséhez.</span></label>
+      <label class="chk"><input type="checkbox"><span>Elolvastam és elfogadom az <a href="#">Adatkezelési tájékoztatót</a>. *</span></label>
+    </div>
+
+    <button class="cta">Jelentkezem</button>
+    <p class="capacity-note">A helyek száma korlátozott — jelentkezését a beérkezés sorrendjében fogadjuk.</p>
+  </section>
+
+  <div class="annot">WIREFRAME MEGJEGYZÉS — A verzió: hosszú, egyoldalas „műszaki adatlap” elrendezés. Minden szekció önálló, hairline-nal elválasztott blokk, dokumentum-szerű hangvétellel. A képhelyek szaggatott kerettel jelöltek, a végleges gyári fotókkal töltendők.</div>
+
+  <footer>
+    Legrand Magyarország Zrt. — Partner Klub · A rendezvényen készült kép- és hangfelvételek a résztvevők hozzájárulásával kerülnek felhasználásra. <a href="#">Adatkezelési tájékoztató</a>
+  </footer>
+</div>
