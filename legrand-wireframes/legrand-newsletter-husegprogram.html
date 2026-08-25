@@ -1,210 +1,185 @@
 <title>Legrand hírlevél — Hűségprogram, számlafeltöltési határidő</title>
 <style>
-  :root{ --paper:#EDEDED; }
-  @media (prefers-color-scheme: dark){ :root{ --paper:#1a1a1a; } }
-  :root[data-theme="dark"]{ --paper:#1a1a1a; }
-  :root[data-theme="light"]{ --paper:#EDEDED; }
-  body{margin:0; background:var(--paper); padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
-  .previewbar{max-width:600px; margin:0 auto 14px; font-family:ui-monospace,monospace; font-size:.72rem; color:#8a8a8a; letter-spacing:.04em; text-transform:uppercase;}
+  :root{
+    --ink:#171310; --ink-soft:#6B6255; --paper:#EDEDED; --card:#FFFFFF;
+    --panel:#171310; --panel-text:#F4EFE6;
+    --gold:#B9872C; --gold-brt:#D9A83F; --gold-pale:#F4E7C9;
+    --line:rgba(23,19,16,.12); --line-strong:rgba(23,19,16,.22);
+    --shadow:0 10px 24px -12px rgba(23,19,16,.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#F4EFE6; --ink-soft:#B7AD9C; --paper:#0F0D0B; --card:#1B1712;
+      --panel:#0A0805; --panel-text:#F4EFE6; --gold:#D9A83F; --gold-brt:#EFC469; --gold-pale:#2A2214;
+      --line:rgba(244,239,230,.14); --line-strong:rgba(244,239,230,.26); }
+  }
+  :root[data-theme="dark"]{ --ink:#F4EFE6; --ink-soft:#B7AD9C; --paper:#0F0D0B; --card:#1B1712;
+    --panel:#0A0805; --panel-text:#F4EFE6; --gold:#D9A83F; --gold-brt:#EFC469; --gold-pale:#2A2214;
+    --line:rgba(244,239,230,.14); --line-strong:rgba(244,239,230,.26); }
+  :root[data-theme="light"]{ --ink:#171310; --ink-soft:#6B6255; --paper:#EDEDED; --card:#FFFFFF;
+    --panel:#171310; --panel-text:#F4EFE6; --gold:#B9872C; --gold-brt:#D9A83F; --gold-pale:#F4E7C9;
+    --line:rgba(23,19,16,.12); --line-strong:rgba(23,19,16,.22); }
 
-  /* progressive-enhancement hover — safe to ignore in clients without :hover support, the card already reads fine without it */
-  .gift-card{transition:border-color .15s ease, transform .15s ease;}
-  .gift-card:hover{border-color:#1F7A46 !important; transform:translateY(-2px);}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
+  .previewbar{max-width:600px; margin:0 auto 14px; font-family:ui-monospace,"SF Mono",monospace; font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
+
+  .sheet{max-width:600px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+
+  .brandbar{background:var(--panel);color:var(--panel-text);padding:18px 30px;display:flex;align-items:center;justify-content:space-between;}
+  .brandbar .name{font-weight:800;font-size:14px;letter-spacing:.05em;}
+  .brandbar .name b{color:var(--gold-brt);}
+  .brandbar .pill{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--panel-text);opacity:.6;}
+
+  .hero{position:relative;padding:0;height:230px;background:
+      linear-gradient(180deg, rgba(23,19,16,.05), rgba(23,19,16,.65)),
+      repeating-linear-gradient(135deg, #cfc6b3, #cfc6b3 2px, #ddd5c4 2px, #ddd5c4 26px);
+    display:flex; align-items:flex-end;}
+  .hero .cap{padding:16px 30px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:#fff;opacity:.75;}
+
+  .ribbon{background:var(--gold);padding:12px 30px;text-align:center;}
+  .ribbon span{font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--panel);}
+
+  .headline{padding:34px 30px 0;}
+  .headline .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .headline .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+  .headline h1{margin:0;font-size:28px;line-height:1.12;font-weight:800;letter-spacing:-.01em;color:var(--ink);}
+  .headline h2{margin:10px 0 0;font-size:17px;font-weight:700;color:var(--gold);}
+
+  .body{padding:16px 30px 0;font-size:15px;line-height:1.65;color:var(--ink-soft);}
+  .body strong{color:var(--ink);}
+
+  .ctawrap{padding:26px 30px 4px;text-align:center;}
+  .cta{display:inline-block;padding:16px 42px;background:var(--gold);color:var(--panel);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px;text-decoration:none;border-radius:999px;box-shadow:0 8px 18px -8px rgba(185,135,44,.55);}
+  .cta.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong);box-shadow:none;padding:12px 30px;font-size:12.5px;}
+
+  .divider{padding:30px 30px 0;}
+  .divider hr{border:none;border-top:1px solid var(--line);margin:0;}
+
+  .section-title{padding:28px 30px 0;}
+  .section-title h2{margin:0;font-size:18px;font-weight:800;letter-spacing:-.005em;color:var(--ink);line-height:1.4;}
+
+  .tier{margin:20px 30px 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .tier .tierhead{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--gold-pale);}
+  .tier .amount{font-weight:800;font-size:16px;color:var(--ink);}
+  .tier .amount b{color:var(--gold);font-size:19px;}
+  .tier .label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .tier .choices{display:flex;align-items:stretch;padding:16px;gap:0;position:relative;}
+  .tier .opt{flex:1;text-align:center;}
+  .tier .imgph{height:76px;border-radius:8px;background:repeating-linear-gradient(135deg, var(--line), var(--line) 2px, transparent 2px, transparent 10px);border:1px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:9px;color:var(--ink-soft);text-align:center;padding:6px;}
+  .tier .optname{margin-top:8px;font-size:12.5px;color:var(--ink);line-height:1.35;}
+  .tier .vs{flex:0 0 46px;display:flex;align-items:center;justify-content:center;}
+  .tier .vs span{width:34px;height:34px;border-radius:50%;background:var(--panel);color:var(--gold-brt);font-family:ui-monospace,monospace;font-weight:800;font-size:9.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;}
+
+  .annot{margin:20px 30px 0;padding:12px 14px;border:1px dashed var(--line-strong);border-radius:8px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;color:var(--ink-soft);background:var(--paper);}
+
+  .steps{padding:16px 30px 0;}
+  .step{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);}
+  .step:first-child{border-top:none;}
+  .step .num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--panel);color:var(--gold-brt);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .step .t{font-weight:800;font-size:14px;color:var(--ink);}
+  .step .d{font-size:13.5px;color:var(--ink-soft);margin-top:2px;line-height:1.5;}
+
+  .closing{margin:30px 30px 0;padding:28px 24px;border-radius:14px;background:var(--panel);color:var(--panel-text);text-align:center;}
+  .closing h2{margin:0;font-size:19px;font-weight:800;color:#fff;}
+  .closing p{margin:10px 0 0;font-size:14px;color:var(--panel-text);opacity:.85;line-height:1.6;}
+  .closing .cta{margin-top:18px;}
+
+  .register{padding:22px 30px 0;text-align:center;}
+  .register p{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin:0 0 12px;}
+
+  .signoff{padding:30px 30px 4px;text-align:center;}
+  .signoff b{font-size:15px;color:var(--ink);}
+  .signoff span{display:block;margin-top:4px;font-size:13px;color:var(--gold);font-weight:700;}
+
+  .footer{padding:22px 30px 28px;margin-top:22px;border-top:1px solid var(--line);}
+  .footer p{font-size:11px;line-height:1.6;color:var(--ink-soft);margin:16px 0 0;}
+  .footer a{color:var(--ink-soft);}
 </style>
 
 <div class="previewbar">Hírlevél előnézet — preheader: „Már csak néhány napod maradt, hogy feltöltsd Legrand vásárlásaid számláit és elérd a következő ajándékszintet.”</div>
 
-<!--[if mso]><table role="presentation" width="600" align="center"><tr><td><![endif]-->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;font-family:Arial,Helvetica,sans-serif;border-collapse:collapse;">
+<div class="sheet">
 
-  <!-- brand bar -->
-  <tr><td style="background:#12181A;padding:16px 28px;">
-    <span style="color:#ffffff;font-weight:bold;font-size:14px;letter-spacing:.03em;">LEGRAND · PARTNER KLUB</span>
-  </td></tr>
+  <div class="brandbar">
+    <div class="name">LEGRAND · <b>PARTNER KLUB</b></div>
+    <div class="pill">HŰSÉGPROGRAM</div>
+  </div>
 
-  <!-- hero image -->
-  <tr><td style="padding:0;">
-    <div style="width:100%;height:220px;background:#dcdcdc repeating-linear-gradient(45deg, transparent, transparent 10px, #cfcfcf 10px, #cfcfcf 11px);display:flex;align-items:center;justify-content:center;text-align:center;">
-      <table width="100%" height="220"><tr><td align="center" style="font-family:'Courier New',monospace;font-size:12px;color:#8a8a8a;letter-spacing:.05em;">
-        FEJLÉCKÉP — VILLANYSZERELŐ MUNKA KÖZBEN<br>(600×220, a korábbi kampányfotókhoz hasonló stílusban)
-      </td></tr></table>
+  <div class="hero"><div class="cap">FEJLÉCKÉP — VILLANYSZERELŐ MUNKA KÖZBEN (600×230)</div></div>
+
+  <div class="ribbon"><span>⏳ Már csak néhány napod maradt!</span></div>
+
+  <div class="headline">
+    <div class="eyebrow"><span class="dot"></span></div>
+    <h1>Már csak néhány<br>napod maradt!</h1>
+    <h2>Töltsd fel számláidat augusztus 31-ig!</h2>
+  </div>
+
+  <div class="body">
+    <p style="margin:0;">Vásároltál Legrand termékeket az elmúlt hónapokban?<br>Ne felejtsd el feltölteni számláidat a <strong>Legrand Partner Klub Hűségprogramjába</strong>!</p>
+    <p style="margin:14px 0 0;">A jelenlegi időszak számláinak összesítése <strong>2026. augusztus 31-én</strong> történik, így még van időd feltölteni a korábban kimaradt számláidat — akár egyszerre többet is.</p>
+  </div>
+
+  <div class="ctawrap"><a class="cta" href="https://legrandpartnerklub.hu/husegprogram">Számláim feltöltése →</a></div>
+
+  <div class="divider"><hr></div>
+
+  <div class="section-title"><h2>Minél több Legrand terméket vásárolsz, annál értékesebb ajándékot választhatsz</h2></div>
+
+  <div class="tier">
+    <div class="tierhead"><div class="amount"><b>200 000 Ft</b> vásárlás után</div><div class="label">1. szint</div></div>
+    <div class="choices">
+      <div class="opt"><div class="imgph">KÉP<br>10× Suno 2P+E<br>csatlakozóaljzat</div><div class="optname">10 db Suno 2P+E csatlakozóaljzat</div></div>
+      <div class="vs"><span>VAGY</span></div>
+      <div class="opt"><div class="imgph">KÉP<br>Túlfeszültség-védett<br>TV elosztóállomás</div><div class="optname">Túlfeszültség-védett TV elosztóállomás</div></div>
     </div>
-  </td></tr>
+  </div>
 
-  <!-- countdown ribbon -->
-  <tr><td style="background:#E7AC1E;padding:10px 28px;text-align:center;">
-    <span style="font-family:'Courier New',monospace;font-weight:bold;font-size:13px;letter-spacing:.04em;color:#12181A;text-transform:uppercase;">⏳ Már csak néhány napod maradt!</span>
-  </td></tr>
-
-  <!-- headline -->
-  <tr><td style="padding:32px 28px 4px;">
-    <h1 style="font-family:Arial,Helvetica,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:26px;line-height:1.15;color:#12181A;margin:0;">
-      Már csak néhány<br>napod maradt!
-    </h1>
-    <h2 style="font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:17px;line-height:1.4;color:#1F7A46;margin:12px 0 0;">
-      Töltsd fel számláidat augusztus 31-ig!
-    </h2>
-  </td></tr>
-
-  <!-- body copy -->
-  <tr><td style="padding:16px 28px 0;">
-    <p style="font-size:15px;line-height:1.6;color:#3A4245;margin:0;">
-      Vásároltál Legrand termékeket az elmúlt hónapokban?<br>
-      Ne felejtsd el feltölteni számláidat a <strong>Legrand Partner Klub Hűségprogramjába</strong>!
-    </p>
-    <p style="font-size:15px;line-height:1.6;color:#3A4245;margin:14px 0 0;">
-      A jelenlegi időszak számláinak összesítése <strong>2026. augusztus 31-én</strong> történik, így még van időd feltölteni a korábban kimaradt számláidat — akár egyszerre többet is.
-    </p>
-  </td></tr>
-
-  <!-- CTA button 1 -->
-  <tr><td align="center" style="padding:26px 28px 8px;">
-    <table cellpadding="0" cellspacing="0"><tr>
-      <td style="background:#1F7A46;border-radius:2px;">
-        <a href="https://legrandpartnerklub.hu/husegprogram" style="display:inline-block;padding:16px 40px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:.03em;font-size:15px;color:#ffffff;text-decoration:none;">Számláim feltöltése →</a>
-      </td>
-    </tr></table>
-  </td></tr>
-
-  <!-- divider -->
-  <tr><td style="padding:28px 28px 0;"><div style="border-top:1px solid #DDD9CE;"></div></td></tr>
-
-  <!-- gift tier header -->
-  <tr><td style="padding:26px 28px 0;">
-    <h2 style="font-family:Arial,Helvetica,sans-serif;font-weight:800;text-transform:uppercase;font-size:16px;line-height:1.4;letter-spacing:.01em;color:#12181A;margin:0;">
-      Minél több Legrand terméket vásárolsz, annál értékesebb ajándékot választhatsz
-    </h2>
-  </td></tr>
-
-  <!-- tier 1 -->
-  <tr><td style="padding:20px 28px 0;">
-    <div style="font-family:'Courier New',monospace;font-weight:bold;font-size:13px;color:#1F7A46;text-transform:uppercase;letter-spacing:.04em;">200 000 Ft vásárlás után</div>
-    <div style="font-size:12px;color:#8a8a8a;margin-top:2px;text-transform:uppercase;letter-spacing:.04em;">Választható ajándék:</div>
-    <table width="100%" cellpadding="0" cellspacing="0" class="gift-card" style="margin-top:10px;border:1px solid #DDD9CE;border-collapse:collapse;">
-      <tr>
-        <td width="42%" style="padding:14px;border-right:1px dashed #DDD9CE;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>10× Suno 2P+E<br>csatlakozóaljzat</div>
-        </td>
-        <td width="16%" align="center" style="font-family:'Courier New',monospace;font-weight:bold;font-size:12px;color:#8a8a8a;">VAGY</td>
-        <td style="padding:14px;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>Túlfeszültség-védett<br>TV elosztóállomás</div>
-        </td>
-      </tr>
-    </table>
-  </td></tr>
-
-  <!-- tier 2 -->
-  <tr><td style="padding:24px 28px 0;">
-    <div style="font-family:'Courier New',monospace;font-weight:bold;font-size:13px;color:#1F7A46;text-transform:uppercase;letter-spacing:.04em;">400 000 Ft vásárlás után</div>
-    <div style="font-size:12px;color:#8a8a8a;margin-top:2px;text-transform:uppercase;letter-spacing:.04em;">Választható ajándék:</div>
-    <table width="100%" cellpadding="0" cellspacing="0" class="gift-card" style="margin-top:10px;border:1px solid #DDD9CE;border-collapse:collapse;">
-      <tr>
-        <td width="42%" style="padding:14px;border-right:1px dashed #DDD9CE;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>Niloé Step<br>csatlakozóaljzat csomag</div>
-        </td>
-        <td width="16%" align="center" style="font-family:'Courier New',monospace;font-weight:bold;font-size:12px;color:#8a8a8a;">VAGY</td>
-        <td style="padding:14px;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>Legrand KEOR SP<br>1000 VA UPS</div>
-        </td>
-      </tr>
-    </table>
-  </td></tr>
-
-  <!-- tier 3 -->
-  <tr><td style="padding:24px 28px 0;">
-    <div style="font-family:'Courier New',monospace;font-weight:bold;font-size:13px;color:#1F7A46;text-transform:uppercase;letter-spacing:.04em;">500 000 Ft vásárlás után</div>
-    <div style="font-size:12px;color:#8a8a8a;margin-top:2px;text-transform:uppercase;letter-spacing:.04em;">Választható ajándék:</div>
-    <table width="100%" cellpadding="0" cellspacing="0" class="gift-card" style="margin-top:10px;border:1px solid #DDD9CE;border-collapse:collapse;">
-      <tr>
-        <td width="42%" style="padding:14px;border-right:1px dashed #DDD9CE;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>Valena Life<br>csatlakozóaljzat csomag</div>
-        </td>
-        <td width="16%" align="center" style="font-family:'Courier New',monospace;font-weight:bold;font-size:12px;color:#8a8a8a;">VAGY</td>
-        <td style="padding:14px;vertical-align:middle;">
-          <div style="height:70px;background:#e4e4e4;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;color:#9a9a9a;text-align:center;">KÉP<br>Legrand EASYKIT Essential<br>videó kaputelefon szett</div>
-        </td>
-      </tr>
-    </table>
-  </td></tr>
-
-  <!-- wireframe annotation -->
-  <tr><td style="padding:16px 28px 0;">
-    <div style="padding:12px 14px;border:1px dashed #c9c5b8;font-family:'Courier New',monospace;font-size:11px;line-height:1.6;color:#8a8a8a;">
-      WIREFRAME MEGJEGYZÉS — a KÉP feliratú dobozok helyére a feltöltendő termékfotók kerülnek. A weboldalon látható egérrel ráhúzásos (hover) interakció itt statikus „VAGY” összehasonlításként jelenik meg, mert a legtöbb levelezőprogram nem támogatja a :hover-t — böngészőben megnyitva a kártyák felett enyhe kiemelés jelzi az interaktivitást.
+  <div class="tier">
+    <div class="tierhead"><div class="amount"><b>400 000 Ft</b> vásárlás után</div><div class="label">2. szint</div></div>
+    <div class="choices">
+      <div class="opt"><div class="imgph">KÉP<br>Niloé Step<br>csatlakozóaljzat csomag</div><div class="optname">Niloé Step csatlakozóaljzat csomag</div></div>
+      <div class="vs"><span>VAGY</span></div>
+      <div class="opt"><div class="imgph">KÉP<br>Legrand KEOR SP<br>1000 VA UPS</div><div class="optname">Legrand KEOR SP 1000 VA szünetmentes tápegység</div></div>
     </div>
-  </td></tr>
+  </div>
 
-  <!-- divider -->
-  <tr><td style="padding:28px 28px 0;"><div style="border-top:1px solid #DDD9CE;"></div></td></tr>
+  <div class="tier">
+    <div class="tierhead"><div class="amount"><b>500 000 Ft</b> vásárlás után</div><div class="label">3. szint</div></div>
+    <div class="choices">
+      <div class="opt"><div class="imgph">KÉP<br>Valena Life<br>csatlakozóaljzat csomag</div><div class="optname">Valena Life csatlakozóaljzat csomag</div></div>
+      <div class="vs"><span>VAGY</span></div>
+      <div class="opt"><div class="imgph">KÉP<br>EASYKIT Essential<br>videó kaputelefon</div><div class="optname">Legrand EASYKIT Essential videó kaputelefon szett</div></div>
+    </div>
+  </div>
 
-  <!-- how it works -->
-  <tr><td style="padding:26px 28px 0;">
-    <h2 style="font-family:Arial,Helvetica,sans-serif;font-weight:800;text-transform:uppercase;font-size:16px;letter-spacing:.01em;color:#12181A;margin:0;">Hogyan veszel részt?</h2>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;border-collapse:collapse;">
-      <tr>
-        <td width="34" valign="top" style="padding:0 12px 20px 0;font-family:'Courier New',monospace;font-weight:bold;font-size:14px;color:#1F7A46;">1.</td>
-        <td style="padding:0 0 20px;">
-          <div style="font-weight:bold;font-size:14px;color:#12181A;">Jelentkezz be</div>
-          <div style="font-size:14px;color:#3A4245;margin-top:2px;">Lépj be Legrand Partner Klub profilodba.</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="34" valign="top" style="padding:0 12px 20px 0;font-family:'Courier New',monospace;font-weight:bold;font-size:14px;color:#1F7A46;">2.</td>
-        <td style="padding:0 0 20px;">
-          <div style="font-weight:bold;font-size:14px;color:#12181A;">Töltsd fel számláidat</div>
-          <div style="font-size:14px;color:#3A4245;margin-top:2px;">A Számlafeltöltés menüpontban egyszerre akár több számlát is feltölthetsz.</div>
-        </td>
-      </tr>
-      <tr>
-        <td width="34" valign="top" style="padding:0 12px 0 0;font-family:'Courier New',monospace;font-weight:bold;font-size:14px;color:#1F7A46;">3.</td>
-        <td style="padding:0;">
-          <div style="font-weight:bold;font-size:14px;color:#12181A;">Érd el a következő ajándékszintet</div>
-          <div style="font-size:14px;color:#3A4245;margin-top:2px;">A feltöltött, elfogadott Legrand vásárlásaid összege alapján választhatsz az adott szinthez tartozó ajándékok közül.</div>
-        </td>
-      </tr>
-    </table>
-  </td></tr>
+  <div class="annot">WIREFRAME MEGJEGYZÉS — a KÉP feliratú dobozok helyére a feltöltendő termékfotók kerülnek, a szinteken látható arany „VAGY” jelvény a hűségprogram választós ajándék-logikáját vizualizálja.</div>
 
-  <!-- final push -->
-  <tr><td style="padding:30px 28px 0;">
-    <h2 style="font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:17px;color:#12181A;margin:0;">Ne hagyd az utolsó pillanatra!</h2>
-    <p style="font-size:15px;line-height:1.6;color:#3A4245;margin:10px 0 0;">
-      Töltsd fel számláidat legkésőbb augusztus 31-ig, és hozd ki a legtöbbet Legrand vásárlásaidból!
-    </p>
-  </td></tr>
+  <div class="divider" style="padding-top:34px;"><hr></div>
 
-  <!-- CTA button 2 -->
-  <tr><td align="center" style="padding:20px 28px 8px;">
-    <table cellpadding="0" cellspacing="0"><tr>
-      <td style="background:#1F7A46;border-radius:2px;">
-        <a href="https://legrandpartnerklub.hu/husegprogram" style="display:inline-block;padding:16px 40px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:.03em;font-size:15px;color:#ffffff;text-decoration:none;">Számlák feltöltése →</a>
-      </td>
-    </tr></table>
-  </td></tr>
+  <div class="section-title"><h2>Hogyan veszel részt?</h2></div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><div><div class="t">Jelentkezz be</div><div class="d">Lépj be Legrand Partner Klub profilodba.</div></div></div>
+    <div class="step"><div class="num">2</div><div><div class="t">Töltsd fel számláidat</div><div class="d">A Számlafeltöltés menüpontban egyszerre akár több számlát is feltölthetsz.</div></div></div>
+    <div class="step"><div class="num">3</div><div><div class="t">Érd el a következő ajándékszintet</div><div class="d">A feltöltött, elfogadott Legrand vásárlásaid összege alapján választhatsz az adott szinthez tartozó ajándékok közül.</div></div></div>
+  </div>
 
-  <!-- register CTA -->
-  <tr><td align="center" style="padding:22px 28px 4px;">
-    <p style="font-size:13px;color:#8a8a8a;margin:0 0 10px;font-style:italic;">Még nem vagy Legrand Partner Klub tag?</p>
-    <table cellpadding="0" cellspacing="0"><tr>
-      <td style="border:1px solid #12181A;border-radius:2px;">
-        <a href="https://legrandpartnerklub.hu/regisztracio" style="display:inline-block;padding:12px 32px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:.03em;font-size:13px;color:#12181A;text-decoration:none;">Regisztrálok</a>
-      </td>
-    </tr></table>
-  </td></tr>
+  <div class="closing">
+    <h2>Ne hagyd az utolsó pillanatra!</h2>
+    <p>Töltsd fel számláidat legkésőbb augusztus 31-ig, és hozd ki a legtöbbet Legrand vásárlásaidból!</p>
+    <a class="cta" href="https://legrandpartnerklub.hu/husegprogram">Számlák feltöltése →</a>
+  </div>
 
-  <!-- signoff -->
-  <tr><td align="center" style="padding:34px 28px 4px;font-size:14px;line-height:1.6;color:#3A4245;">
-    <strong>Legrand Partner Klub</strong><br>
-    <span style="color:#8a8a8a;">Emeljük partnerkapcsolatunkat új szintre!</span>
-  </td></tr>
+  <div class="register">
+    <p>Még nem vagy Legrand Partner Klub tag?</p>
+    <a class="cta ghost" href="https://legrandpartnerklub.hu/regisztracio">Regisztrálok</a>
+  </div>
 
-  <!-- footer -->
-  <tr><td style="padding:26px 28px 30px;border-top:1px solid #EDEAE1;margin-top:20px;">
-    <p style="font-size:11px;line-height:1.6;color:#9a9a9a;margin:20px 0 0;">
-      Ezt a levelet azért kapod, mert feliratkoztál a Legrand Partner Klub hírlevelére.
-      <a href="#" style="color:#9a9a9a;">Leiratkozás</a> · <a href="#" style="color:#9a9a9a;">Adatkezelési tájékoztató</a>
-    </p>
-  </td></tr>
+  <div class="signoff"><b>Legrand Partner Klub</b><span>Emeljük partnerkapcsolatunkat új szintre!</span></div>
 
-</table>
-<!--[if mso]></td></tr></table><![endif]-->
+  <div class="footer">
+    <p>Ezt a levelet azért kapod, mert feliratkoztál a Legrand Partner Klub hírlevelére.
+      <a href="#">Leiratkozás</a> · <a href="#">Adatkezelési tájékoztató</a></p>
+  </div>
+
+</div>
