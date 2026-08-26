@@ -26,22 +26,6 @@
   /* newsletter column: pinned to a real email width, never stretches on wide screens, shrinks gracefully on narrow ones */
   .sheet{width:100%;max-width:600px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
 
-  .brandbar{background:var(--panel);color:var(--panel-text);padding:18px 30px;display:flex;align-items:center;justify-content:space-between;}
-  .brandbar .name{font-weight:800;font-size:14px;letter-spacing:.05em;}
-  .brandbar .name b{color:var(--gold-brt);}
-  .brandbar .pill{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--panel-text);opacity:.6;}
-
-  .ribbon{background:var(--gold);padding:12px 30px;text-align:center;}
-  .ribbon span{font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--panel);}
-
-  .headline{padding:34px 30px 0;}
-  .headline h1{margin:0;font-size:28px;line-height:1.12;font-weight:800;letter-spacing:-.01em;color:var(--ink);text-align:left;}
-  .headline h2{margin:10px 0 0;font-size:17px;font-weight:700;color:var(--gold);text-align:left;}
-
-  .body{padding:16px 30px 0;font-size:15px;line-height:1.65;color:var(--ink-soft);}
-  .body strong{color:var(--ink);}
-
-  .ctawrap{padding:26px 30px 4px;text-align:center;}
   .cta{display:inline-block;padding:16px 42px;background:var(--gold);color:var(--panel);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px;text-decoration:none;border-radius:999px;box-shadow:0 8px 18px -8px rgba(185,135,44,.55);}
   .cta.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong);box-shadow:none;padding:12px 30px;font-size:12.5px;}
 
@@ -91,11 +75,9 @@
   /* small screens: tighter padding, smaller type, and the two gift options stack instead of squeezing side by side */
   @media (max-width:480px){
     body{padding:16px 0;}
-    .brandbar, .headline, .body, .ctawrap, .divider, .section-title, .annot, .steps, .register, .signoff, .footer{padding-left:20px; padding-right:20px;}
+    .divider, .section-title, .annot, .steps, .register, .signoff, .footer{padding-left:20px; padding-right:20px;}
     .tier{margin-left:20px; margin-right:20px;}
     .closing{margin-left:20px; margin-right:20px; padding:22px 18px;}
-    .headline h1{font-size:23px;}
-    .headline h2{font-size:15.5px;}
     .cta{padding:14px 30px; font-size:13px;}
     .tier .choices{flex-direction:column; gap:12px;}
     .tier .vs{flex:0 0 auto; padding:2px 0;}
@@ -106,27 +88,6 @@
 
 
 <div class="sheet">
-
-  <div class="brandbar">
-    <div class="name">LEGRAND · <b>PARTNER KLUB</b></div>
-    <div class="pill">HŰSÉGPROGRAM</div>
-  </div>
-
-  <div class="ribbon"><span>⏳ Már csak néhány napod maradt!</span></div>
-
-  <div class="headline" style="text-align:left;">
-    <h1 style="text-align:left;">Már csak néhány<br>napod maradt!</h1>
-    <h2 style="text-align:left;">Töltsd fel számláidat augusztus 31-ig!</h2>
-  </div>
-
-  <div class="body">
-    <p style="margin:0;">Vásároltál Legrand termékeket az elmúlt hónapokban?<br>Ne felejtsd el feltölteni számláidat a <strong>Legrand Partner Klub Hűségprogramjába</strong>!</p>
-    <p style="margin:14px 0 0;">A jelenlegi időszak számláinak összesítése <strong>2026. augusztus 31-én</strong> történik, így még van időd feltölteni a korábban kimaradt számláidat — akár egyszerre többet is.</p>
-  </div>
-
-  <div class="ctawrap"><a class="cta" href="https://legrandpartnerklub.hu/husegprogram">Számláim feltöltése →</a></div>
-
-  <div class="divider"><hr></div>
 
   <div class="section-title"><h2>Minél több Legrand terméket vásárolsz, annál értékesebb ajándékot választhatsz</h2></div>
 
