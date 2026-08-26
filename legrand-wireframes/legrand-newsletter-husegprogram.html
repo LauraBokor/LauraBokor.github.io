@@ -1,76 +1,57 @@
 <title>Legrand hírlevél — Hűségprogram, számlafeltöltési határidő</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  :root{
-    --ink:#1B1730; --ink-soft:#5B5570; --paper:#F3F1FA; --card:#FFFFFF;
-    --panel:#291F62; --panel-text:#F7F3FF;
-    --gold:#FAB546; --gold-brt:#FFC66B; --gold-pale:#FFF1DA;
-    --line:rgba(41,31,98,.12); --line-strong:rgba(41,31,98,.22);
-    --shadow:0 10px 24px -12px rgba(41,31,98,.30);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --ink:#F1EEFA; --ink-soft:#B9B2D0; --paper:#120C2B; --card:#1E1840;
-      --panel:#0C0820; --panel-text:#F7F3FF; --gold:#FAB546; --gold-brt:#FFCB78; --gold-pale:#2E2410;
-      --line:rgba(247,243,255,.14); --line-strong:rgba(247,243,255,.26); }
-  }
-  :root[data-theme="dark"]{ --ink:#F1EEFA; --ink-soft:#B9B2D0; --paper:#120C2B; --card:#1E1840;
-    --panel:#0C0820; --panel-text:#F7F3FF; --gold:#FAB546; --gold-brt:#FFCB78; --gold-pale:#2E2410;
-    --line:rgba(247,243,255,.14); --line-strong:rgba(247,243,255,.26); }
-  :root[data-theme="light"]{ --ink:#1B1730; --ink-soft:#5B5570; --paper:#F3F1FA; --card:#FFFFFF;
-    --panel:#291F62; --panel-text:#F7F3FF; --gold:#FAB546; --gold-brt:#FFC66B; --gold-pale:#FFF1DA;
-    --line:rgba(41,31,98,.12); --line-strong:rgba(41,31,98,.22); }
-
   *{box-sizing:border-box;}
   html{width:100%;overflow-x:hidden;}
-  body{margin:0; width:100%; background:var(--paper); padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
+  body{margin:0; width:100%; background:#F3F1FA; padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
   /* newsletter column: pinned to a real email width, never stretches on wide screens, shrinks gracefully on narrow ones */
-  .sheet{width:100%;max-width:600px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  .sheet{width:100%;max-width:600px;margin:0 auto;background:#FFFFFF;color:#1B1730;border-radius:14px;overflow:hidden;box-shadow:0 10px 24px -12px rgba(41,31,98,.30);}
 
-  .cta{display:inline-block;padding:16px 42px;background:var(--gold);color:var(--panel);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px;text-decoration:none;border-radius:999px;box-shadow:0 8px 18px -8px rgba(185,135,44,.55);}
-  .cta.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong);box-shadow:none;padding:12px 30px;font-size:12.5px;}
+  .cta{display:inline-block;padding:16px 42px;background:#FAB546;color:#291F62;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:14px;text-decoration:none;border-radius:999px;box-shadow:0 8px 18px -8px rgba(185,135,44,.55);}
+  .cta.ghost{background:transparent;color:#1B1730;border:1.5px solid rgba(41,31,98,.22);box-shadow:none;padding:12px 30px;font-size:12.5px;}
 
   .divider{padding:30px 30px 0;}
-  .divider hr{border:none;border-top:1px solid var(--line);margin:0;}
+  .divider hr{border:none;border-top:1px solid rgba(41,31,98,.12);margin:0;}
 
   .section-title{padding:28px 30px 0;}
-  .section-title h2{margin:0;font-size:18px;font-weight:800;letter-spacing:-.005em;color:var(--ink);line-height:1.4;}
+  .section-title h2{margin:0;font-size:18px;font-weight:800;letter-spacing:-.005em;color:#1B1730;line-height:1.4;}
 
-  .tier{margin:20px 30px 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
-  .tier .tierhead{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--gold-pale);}
-  .tier .amount{font-weight:800;font-size:16px;color:var(--ink);}
-  .tier .amount b{color:var(--gold);font-size:19px;}
-  .tier .label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .tier{margin:20px 30px 0;background:#F3F1FA;border:1px solid rgba(41,31,98,.12);border-radius:12px;overflow:hidden;}
+  .tier .tierhead{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#FFF1DA;}
+  .tier .amount{font-weight:800;font-size:16px;color:#1B1730;}
+  .tier .amount b{color:#B9872C;font-size:19px;}
+  .tier .label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5B5570;}
   .tier .choices{display:flex;align-items:stretch;padding:16px;gap:0;position:relative;}
   .tier .opt{flex:1;text-align:center;}
-  .tier .imgph{display:block;width:100%;aspect-ratio:1/1;height:auto;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--card);}
-  .tier .optname{margin-top:8px;font-size:12.5px;color:var(--ink);line-height:1.35;}
+  .tier .imgph{display:block;width:100%;aspect-ratio:1/1;height:auto;border-radius:8px;object-fit:cover;border:1px solid rgba(41,31,98,.12);background:#FFFFFF;}
+  .tier .optname{margin-top:8px;font-size:12.5px;color:#1B1730;line-height:1.35;}
   .tier .vs{flex:0 0 46px;display:flex;align-items:center;justify-content:center;}
-  .tier .vs span{width:34px;height:34px;border-radius:50%;background:var(--panel);color:var(--gold-brt);font-family:ui-monospace,monospace;font-weight:800;font-size:9.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;}
+  .tier .vs span{width:34px;height:34px;border-radius:50%;background:#291F62;color:#FFC66B;font-family:ui-monospace,monospace;font-weight:800;font-size:9.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;}
 
-  .annot{margin:20px 30px 0;padding:12px 14px;border:1px dashed var(--line-strong);border-radius:8px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;color:var(--ink-soft);background:var(--paper);}
+  .annot{margin:20px 30px 0;padding:12px 14px;border:1px dashed rgba(41,31,98,.22);border-radius:8px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;color:#5B5570;background:#F3F1FA;}
 
   .steps{padding:16px 30px 0;}
-  .step{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);}
+  .step{display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(41,31,98,.12);}
   .step:first-child{border-top:none;}
-  .step .num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--panel);color:var(--gold-brt);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
-  .step .t{font-weight:800;font-size:14px;color:var(--ink);}
-  .step .d{font-size:13.5px;color:var(--ink-soft);margin-top:2px;line-height:1.5;}
+  .step .num{flex:0 0 34px;height:34px;border-radius:50%;background:#291F62;color:#FFC66B;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .step .t{font-weight:800;font-size:14px;color:#1B1730;}
+  .step .d{font-size:13.5px;color:#5B5570;margin-top:2px;line-height:1.5;}
 
-  .closing{margin:30px 30px 0;padding:28px 24px;border-radius:14px;background:var(--panel);color:var(--panel-text);text-align:center;}
-  .closing h2{margin:0;font-size:19px;font-weight:800;color:#fff;}
-  .closing p{margin:10px 0 0;font-size:14px;color:var(--panel-text);opacity:.85;line-height:1.6;}
+  .closing{margin:30px 30px 0;padding:28px 24px;border-radius:14px;background:#291F62;color:#F7F3FF;text-align:center;}
+  .closing h2{margin:0;font-size:19px;font-weight:800;color:#ffffff;}
+  .closing p{margin:10px 0 0;font-size:14px;color:#F7F3FF;opacity:.85;line-height:1.6;}
   .closing .cta{margin-top:18px;}
 
   .register{padding:22px 30px 0;text-align:center;}
-  .register p{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin:0 0 12px;}
+  .register p{font-size:12.5px;color:#5B5570;font-style:italic;margin:0 0 12px;}
 
   .signoff{padding:30px 30px 4px;text-align:center;}
-  .signoff b{font-size:15px;color:var(--ink);}
-  .signoff span{display:block;margin-top:4px;font-size:13px;color:var(--gold);font-weight:700;}
+  .signoff b{font-size:15px;color:#1B1730;}
+  .signoff span{display:block;margin-top:4px;font-size:13px;color:#B9872C;font-weight:700;}
 
-  .footer{padding:22px 30px 28px;margin-top:22px;border-top:1px solid var(--line);}
-  .footer p{font-size:11px;line-height:1.6;color:var(--ink-soft);margin:16px 0 0;}
-  .footer a{color:var(--ink-soft);}
+  .footer{padding:22px 30px 28px;margin-top:22px;border-top:1px solid rgba(41,31,98,.12);}
+  .footer p{font-size:11px;line-height:1.6;color:#5B5570;margin:16px 0 0;}
+  .footer a{color:#5B5570;}
 
   /* small screens: tighter padding, smaller type, and the two gift options stack instead of squeezing side by side */
   @media (max-width:480px){
@@ -130,12 +111,12 @@
   <div class="closing">
     <h2>Ne hagyd az utolsó pillanatra!</h2>
     <p>Töltsd fel számláidat legkésőbb augusztus 31-ig, és hozd ki a legtöbbet Legrand vásárlásaidból!</p>
-    <a class="cta" href="https://legrandpartnerklub.hu/husegprogram">Számlák feltöltése →</a>
+    <a class="cta" href="https://legrandpartnerklub.hu/husegprogram" style="background:#FAB546;color:#291F62;">Számlák feltöltése →</a>
   </div>
 
   <div class="register">
     <p>Még nem vagy Legrand Partner Klub tag?</p>
-    <a class="cta ghost" href="https://legrandpartnerklub.hu/regisztracio">Regisztrálok</a>
+    <a class="cta ghost" href="https://legrandpartnerklub.hu/regisztracio" style="background:transparent;color:#1B1730;">Regisztrálok</a>
   </div>
 
   <div class="signoff"><b>Legrand Partner Klub</b><span>Emeljük partnerkapcsolatunkat új szintre!</span></div>
