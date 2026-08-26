@@ -65,7 +65,7 @@
   .tier .label{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
   .tier .choices{display:flex;align-items:stretch;padding:16px;gap:0;position:relative;}
   .tier .opt{flex:1;text-align:center;}
-  .tier .imgph{height:76px;border-radius:8px;background:repeating-linear-gradient(135deg, var(--line), var(--line) 2px, transparent 2px, transparent 10px);border:1px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:9px;color:var(--ink-soft);text-align:center;padding:6px;}
+  .tier .imgph{display:block;width:100%;height:76px;border-radius:8px;object-fit:cover;border:1px solid var(--line);background:var(--card);}
   .tier .optname{margin-top:8px;font-size:12.5px;color:var(--ink);line-height:1.35;}
   .tier .vs{flex:0 0 46px;display:flex;align-items:center;justify-content:center;}
   .tier .vs span{width:34px;height:34px;border-radius:50%;background:var(--panel);color:var(--gold-brt);font-family:ui-monospace,monospace;font-weight:800;font-size:9.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;}
@@ -147,31 +147,31 @@
   <div class="tier">
     <div class="tierhead"><div class="amount"><b>200 000 Ft</b> vásárlás után</div><div class="label">1. szint</div></div>
     <div class="choices">
-      <div class="opt"><div class="imgph">KÉP<br>10× Suno 2P+E<br>csatlakozóaljzat</div><div class="optname">10 db Suno 2P+E csatlakozóaljzat</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="10× Suno 2P+E csatlakozóaljzat"><div class="optname">10 db Suno 2P+E csatlakozóaljzat</div></div>
       <div class="vs"><span>VAGY</span></div>
-      <div class="opt"><div class="imgph">KÉP<br>Túlfeszültség-védett<br>TV elosztóállomás</div><div class="optname">Túlfeszültség-védett TV elosztóállomás</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="Túlfeszültség-védett TV elosztóállomás"><div class="optname">Túlfeszültség-védett TV elosztóállomás</div></div>
     </div>
   </div>
 
   <div class="tier">
     <div class="tierhead"><div class="amount"><b>400 000 Ft</b> vásárlás után</div><div class="label">2. szint</div></div>
     <div class="choices">
-      <div class="opt"><div class="imgph">KÉP<br>Niloé Step<br>csatlakozóaljzat csomag</div><div class="optname">Niloé Step csatlakozóaljzat csomag</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="Niloé Step csatlakozóaljzat csomag"><div class="optname">Niloé Step csatlakozóaljzat csomag</div></div>
       <div class="vs"><span>VAGY</span></div>
-      <div class="opt"><div class="imgph">KÉP<br>Legrand KEOR SP<br>1000 VA UPS</div><div class="optname">Legrand KEOR SP 1000 VA szünetmentes tápegység</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="Legrand KEOR SP 1000 VA UPS"><div class="optname">Legrand KEOR SP 1000 VA szünetmentes tápegység</div></div>
     </div>
   </div>
 
   <div class="tier">
     <div class="tierhead"><div class="amount"><b>500 000 Ft</b> vásárlás után</div><div class="label">3. szint</div></div>
     <div class="choices">
-      <div class="opt"><div class="imgph">KÉP<br>Valena Life<br>csatlakozóaljzat csomag</div><div class="optname">Valena Life csatlakozóaljzat csomag</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="Valena Life csatlakozóaljzat csomag"><div class="optname">Valena Life csatlakozóaljzat csomag</div></div>
       <div class="vs"><span>VAGY</span></div>
-      <div class="opt"><div class="imgph">KÉP<br>EASYKIT Essential<br>videó kaputelefon</div><div class="optname">Legrand EASYKIT Essential videó kaputelefon szett</div></div>
+      <div class="opt"><img class="imgph" src="IDE_MASOLD_A_KEP_URL-JET" alt="Legrand EASYKIT Essential videó kaputelefon szett"><div class="optname">Legrand EASYKIT Essential videó kaputelefon szett</div></div>
     </div>
   </div>
 
-  <div class="annot">WIREFRAME MEGJEGYZÉS — a KÉP feliratú dobozok helyére a feltöltendő termékfotók kerülnek, a szinteken látható arany „VAGY” jelvény a hűségprogram választós ajándék-logikáját vizualizálja.</div>
+  <div class="annot">MEGJEGYZÉS — minden „IDE_MASOLD_A_KEP_URL-JET” feliratú src="" mezőbe illeszd be a Mailchimpbe feltöltött termékfotó URL-jét (7 db kép: 1 fejléckép + 6 ajándékfotó). Ha ez a doboz már nem kell a végleges levélbe, egyszerűen töröld ezt a &lt;div class="annot"&gt;...&lt;/div&gt; sort.</div>
 
   <div class="divider" style="padding-top:34px;"><hr></div>
 
