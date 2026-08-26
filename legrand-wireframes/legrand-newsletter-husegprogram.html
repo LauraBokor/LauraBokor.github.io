@@ -1,4 +1,5 @@
 <title>Legrand hírlevél — Hűségprogram, számlafeltöltési határidő</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root{
     --ink:#1B1730; --ink-soft:#5B5570; --paper:#F3F1FA; --card:#FFFFFF;
@@ -20,10 +21,12 @@
     --line:rgba(41,31,98,.12); --line-strong:rgba(41,31,98,.22); }
 
   *{box-sizing:border-box;}
-  body{margin:0; background:var(--paper); padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
-  .previewbar{max-width:600px; margin:0 auto 14px; font-family:ui-monospace,"SF Mono",monospace; font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
+  html{width:100%;overflow-x:hidden;}
+  body{margin:0; width:100%; background:var(--paper); padding:32px 12px; font-family:Arial,Helvetica,sans-serif;}
+  .previewbar{width:100%;max-width:600px; margin:0 auto 14px; font-family:ui-monospace,"SF Mono",monospace; font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; text-transform:uppercase;}
 
-  .sheet{max-width:600px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  /* newsletter column: pinned to a real email width, never stretches on wide screens, shrinks gracefully on narrow ones */
+  .sheet{width:100%;max-width:600px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
 
   .brandbar{background:var(--panel);color:var(--panel-text);padding:18px 30px;display:flex;align-items:center;justify-content:space-between;}
   .brandbar .name{font-weight:800;font-size:14px;letter-spacing:.05em;}
@@ -94,6 +97,21 @@
   .footer{padding:22px 30px 28px;margin-top:22px;border-top:1px solid var(--line);}
   .footer p{font-size:11px;line-height:1.6;color:var(--ink-soft);margin:16px 0 0;}
   .footer a{color:var(--ink-soft);}
+
+  /* small screens: tighter padding, smaller type, and the two gift options stack instead of squeezing side by side */
+  @media (max-width:480px){
+    body{padding:16px 0;}
+    .brandbar, .headline, .body, .ctawrap, .divider, .section-title, .annot, .steps, .register, .signoff, .footer{padding-left:20px; padding-right:20px;}
+    .tier{margin-left:20px; margin-right:20px;}
+    .closing{margin-left:20px; margin-right:20px; padding:22px 18px;}
+    .headline h1{font-size:23px;}
+    .headline h2{font-size:15.5px;}
+    .cta{padding:14px 30px; font-size:13px;}
+    .tier .choices{flex-direction:column; gap:12px;}
+    .tier .vs{flex:0 0 auto; padding:2px 0;}
+    .tier .vs span{margin:0 auto;}
+    .tier .opt{flex:1 1 auto;}
+  }
 </style>
 
 <div class="previewbar">Hírlevél előnézet — preheader: „Már csak néhány napod maradt, hogy feltöltsd Legrand vásárlásaid számláit és elérd a következő ajándékszintet.”</div>
