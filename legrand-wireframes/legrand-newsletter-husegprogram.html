@@ -33,11 +33,8 @@
   .brandbar .name b{color:var(--gold-brt);}
   .brandbar .pill{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--panel-text);opacity:.6;}
 
-  .hero{position:relative;padding:0;height:230px;background:
-      linear-gradient(180deg, rgba(41,31,98,.08), rgba(41,31,98,.72)),
-      repeating-linear-gradient(135deg, #cfc6dd, #cfc6dd 2px, #ded6ee 2px, #ded6ee 26px);
-    display:flex; align-items:flex-end;}
-  .hero .cap{padding:16px 30px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:#fff;opacity:.75;}
+  .hero{position:relative;line-height:0;background:#ded6ee;}
+  .hero img{display:block;width:100%;height:230px;object-fit:cover;border:0;}
 
   .ribbon{background:var(--gold);padding:12px 30px;text-align:center;}
   .ribbon span{font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--panel);}
@@ -123,7 +120,10 @@
     <div class="pill">HŰSÉGPROGRAM</div>
   </div>
 
-  <div class="hero"><div class="cap">FEJLÉCKÉP — VILLANYSZERELŐ MUNKA KÖZBEN (600×230)</div></div>
+  <div class="hero">
+    <!-- IDE ILLESZD BE A FELTÖLTÖTT KÉPED URL-JÉT a src="" idézőjelei közé -->
+    <img src="IDE_MASOLD_A_KEP_URL-JET" alt="Villanyszerelő munka közben" width="600" height="230">
+  </div>
 
   <div class="ribbon"><span>⏳ Már csak néhány napod maradt!</span></div>
 
